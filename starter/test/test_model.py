@@ -14,7 +14,9 @@ def test_compute_model_metrics():
     y = np.random.randint(low=0, high=2, size=100)
     preds = np.random.randint(low=0, high=2, size=100)
     precision, recall, fbeta = compute_model_metrics(y, preds)
-    assert type(precision) == float, type(recall) == float, type(fbeta) == float
+    assert type(precision) == float
+    assert type(recall) == float
+    assert type(fbeta) == float
 
 
 def test_inference():
