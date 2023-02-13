@@ -4,10 +4,13 @@ from sklearn.model_selection import train_test_split
 from ml.data import process_data
 import pandas as pd
 from ml.model import train_model, compute_model_metrics, inference
+import joblib, os
 # Add the necessary imports for the starter code.
 
 # Add code to load in the data.
-data=pd.read_csv("/Users/Pengyun_Wang/gits/nd0821-c3-starter-code/starter/data/census.csv")
+
+CWD = os.getcwd()
+data=pd.read_csv(os.path.join(CWD, "data/census.csv"))
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
 train, test = train_test_split(data, test_size=0.20)
 
@@ -34,3 +37,7 @@ y_pred=inference(model, X_test)
 prec, recall, fscore = compute_model_metrics(y_test, y_pred)
 
 print(f'prec: {prec}, recall: {recall}, fscore:{fscore}')
+
+model_save_root=os.path.join(CWD,'model')
+joblib.dump(encoder, os.path.join(model_save_root, "encoder.pkl"))
+joblib.dump(model, os.path.join(model_save_root, "rf_model.pkl"))
