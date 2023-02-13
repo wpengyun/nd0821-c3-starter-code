@@ -1,4 +1,3 @@
-import pytest
 from starter.ml.model import train_model, compute_model_metrics, inference
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -14,9 +13,9 @@ def test_compute_model_metrics():
     y = np.random.randint(low=0, high=2, size=100)
     preds = np.random.randint(low=0, high=2, size=100)
     precision, recall, fbeta = compute_model_metrics(y, preds)
-    assert type(precision) == float
-    assert type(recall) == float
-    assert type(fbeta) == float
+    assert type(precision) == np.float64
+    assert type(recall) == np.float64
+    assert type(fbeta) == np.float64
 
 
 def test_inference():
